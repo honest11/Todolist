@@ -8,10 +8,10 @@ const btnAdd = document.getElementById('add-button');
 const ulTodolist = document.getElementById('todo-list');
 
 // calling the created btn variable outside to make it global
-let btnDel, li;
+let btnDelete,li;
 
 //  A button click event for adding the Todolist 
-btnAdd.addEventListener('click', (e)=>{
+btnAdd.addEventListener('click', function add(e){
 
     // an event to stop auto refresh in website
     e.preventDefault();
@@ -37,10 +37,15 @@ btnAdd.addEventListener('click', (e)=>{
         // appending the created btn element inside my li element
         let text = document.createTextNode('DELETE');
         btnDel.appendChild(text)
-        // appending the created text inside the btn element 
-        li.appendChild(btnDel)
-    }
+        // appending the created text inside the btn element and assigning a variable to it 
+        let btnDelete = li.appendChild(btnDel)
 
+        // removing the created li element from the ul element when delete button is click
+        btnDelete.addEventListener('click', (e)=>{
+            ulTodolist.removeChild(li)
+    });
+    };
+    
     // empties the input fields after hitting the add button
     input.value = '';
-})
+});
